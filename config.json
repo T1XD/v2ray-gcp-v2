@@ -1,8 +1,6 @@
 {
   "log": {
-    "loglevel": "warning",
-    "access": "",
-    "error": ""
+    "loglevel": "warning"
   },
   "inbounds": [
     {
@@ -13,8 +11,7 @@
         "clients": [
           {
             "id": "aeeb5f92-87c1-4fb2-b653-2367c97e0830",
-            "flow": "",
-            "level": 0
+            "flow": ""
           }
         ],
         "decryption": "none"
@@ -23,47 +20,15 @@
         "network": "ws",
         "security": "none",
         "wsSettings": {
-          "path": "/yasssss-vless-30",
-          "headers": {
-            "Accept-Encoding": "gzip, deflate, br"
-          },
-          "maxEarlyData": 4096,
-          "earlyDataHeaderName": "Sec-WebSocket-Protocol"
-        },
-        "tcpSettings": {
-          "header": {
-            "type": "none"
-          }
+          "path": "/yasssss-vless-30"
         },
         "sockopt": {
-          "tcpFastOpen": true,
-          "tproxy": "off",
-          "domainStrategy": "UseIPv4",
-          "dialerProxy": "",
-          "acceptProxyProtocol": false,
-          "tcpKeepAliveInterval": 30,
-          "tcpKeepAliveIdle": 60,
-          "tcpUserTimeout": 10000,
-          "tcpCongestion": "bbr",
-          "interface": "",
-          "v6only": false,
-          "tcpWindowClamp": 0,
-          "tcpMaxSeg": 1440,
-          "tcpNoDelay": true,
-          "tcpcork": false
+          "tcpFastOpen": true
         }
       },
       "sniffing": {
         "enabled": true,
-        "destOverride": ["http", "tls", "quic", "fakedns"],
-        "metadataOnly": false,
-        "routeOnly": false
-      },
-      "tag": "inbound-vless",
-      "allocate": {
-        "strategy": "always",
-        "refresh": 2,
-        "concurrency": 3
+        "destOverride": ["http", "tls"]
       }
     }
   ],
@@ -72,33 +37,11 @@
       "protocol": "freedom",
       "tag": "direct",
       "settings": {
-        "domainStrategy": "UseIPv4",
-        "redirect": "",
-        "userLevel": 0,
-        "noises": [
-          {
-            "type": "rand",
-            "packet": "8-16",
-            "delay": "2-5"
-          }
-        ]
+        "domainStrategy": "UseIPv4"
       },
       "streamSettings": {
         "sockopt": {
-          "tcpFastOpen": true,
-          "tcpKeepAliveInterval": 30,
-          "tcpKeepAliveIdle": 60,
-          "tcpUserTimeout": 10000,
-          "tcpCongestion": "bbr",
-          "tcpNoDelay": true,
-          "tcpcork": false,
-          "interface": "",
-          "v6only": false,
-          "tcpWindowClamp": 0,
-          "tcpMaxSeg": 1440,
-          "domainStrategy": "UseIPv4",
-          "dialerProxy": "",
-          "tproxy": "off"
+          "tcpFastOpen": true
         }
       },
       "mux": {
@@ -108,115 +51,5 @@
         "xudpProxyUDP443": "allow"
       }
     }
-  ],
-  "dns": {
-    "servers": [
-      {
-        "address": "8.8.8.8",
-        "port": 53,
-        "domains": ["domain:google.com", "domain:youtube.com"],
-        "expectIPs": ["geoip:us"]
-      },
-      {
-        "address": "1.1.1.1",
-        "port": 53,
-        "domains": ["geosite:cn"],
-        "expectIPs": ["geoip:cn"]
-      },
-      "8.8.4.4",
-      "1.0.0.1",
-      "localhost"
-    ],
-    "hosts": {
-      "cloudflare.com": "104.16.124.96",
-      "dns.google": "8.8.8.8"
-    },
-    "clientIp": "",
-    "tag": "dns-out",
-    "queryStrategy": "UseIPv4",
-    "disableCache": false,
-    "disableFallback": false,
-    "disableFallbackIfMatch": false,
-    "prefetchDomain": ["google.com", "youtube.com", "github.com"]
-  },
-  "routing": {
-    "domainStrategy": "IPIfNonMatch",
-    "rules": [
-      {
-        "type": "field",
-        "ip": ["geoip:private", "geoip:cn"],
-        "outboundTag": "direct"
-      },
-      {
-        "type": "field",
-        "domain": ["geosite:category-ads-all"],
-        "outboundTag": "direct"
-      },
-      {
-        "type": "field",
-        "protocol": ["bittorrent"],
-        "outboundTag": "direct"
-      },
-      {
-        "type": "field",
-        "inboundTag": ["inbound-vless"],
-        "outboundTag": "direct"
-      }
-    ],
-    "balancers": []
-  },
-  "transport": {
-    "tcpSettings": {
-      "header": {
-        "type": "none"
-      }
-    }
-  },
-  "policy": {
-    "levels": {
-      "0": {
-        "handshake": 4,
-        "connIdle": 300,
-        "uplinkOnly": 2,
-        "downlinkOnly": 5,
-        "statsUserUplink": true,
-        "statsUserDownlink": true,
-        "bufferSize": 4
-      }
-    },
-    "system": {
-      "statsInboundUplink": true,
-      "statsInboundDownlink": true,
-      "statsOutboundUplink": true,
-      "statsOutboundDownlink": true,
-      "overrideAccessLogDest": ""
-    }
-  },
-  "stats": {},
-  "reverse": {},
-  "fakedns": [
-    {
-      "ipPool": "198.18.0.0/15",
-      "poolSize": 65535
-    }
-  ],
-  "metrics": {
-    "tag": "metrics-out",
-    "listen": "127.0.0.1:11111"
-  },
-  "observatory": {
-    "subjectSelector": ["inbound-vless"],
-    "probeURL": "https://www.google.com/generate_204",
-    "probeInterval": "10s",
-    "enableConcurrency": true
-  },
-  "burstObservatory": {
-    "subjectSelector": ["inbound-vless"],
-    "pingConfig": {
-      "destination": "https://cloudflare.com/cdn-cgi/trace",
-      "interval": "15s",
-      "connectivity": "httping",
-      "sampling": 3
-    }
-  }
+  ]
 }
