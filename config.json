@@ -23,7 +23,11 @@
           "path": "/yasssss-vless-30"
         },
         "sockopt": {
-          "tcpFastOpen": true
+          "tcpFastOpen": true,
+          "tcpNoDelay": true,
+          "tcpCongestion": "bbr",
+          "tcpKeepAliveInterval": 30,
+          "tcpKeepAliveIdle": 60
         }
       },
       "sniffing": {
@@ -41,7 +45,11 @@
       },
       "streamSettings": {
         "sockopt": {
-          "tcpFastOpen": true
+          "tcpFastOpen": true,
+          "tcpNoDelay": true,
+          "tcpCongestion": "bbr",
+          "tcpKeepAliveInterval": 30,
+          "tcpKeepAliveIdle": 60
         }
       },
       "mux": {
