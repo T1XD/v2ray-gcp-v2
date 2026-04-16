@@ -1,6 +1,6 @@
 {
   "log": {
-    "loglevel": "none"
+    "loglevel": "warning"
   },
   "inbounds": [
     {
@@ -20,54 +20,9 @@
         "network": "ws",
         "security": "none",
         "wsSettings": {
-          "path": "/yasssss-vless-30",
-          "maxEarlyData": 4096,
-          "earlyDataHeaderName": "Sec-WebSocket-Protocol"
+          "path": "/yasssss-vless-30"
         }
-      },
-      "sniffing": {
-        "enabled": false
       }
     }
-  ],
-  "outbounds": [
-    {
-      "protocol": "freedom",
-      "tag": "direct",
-      "settings": {
-        "domainStrategy": "UseIP"
-      }
-    }
-  ],
-  "routing": {
-    "domainStrategy": "IPIfNonMatch",
-    "rules": []
-  },
-  "transport": {
-    "tcpSettings": {
-      "header": {
-        "type": "none"
-      }
-    },
-    "kcpSettings": {
-      "mtu": 1350,
-      "tti": 20,
-      "uplinkCapacity": 100,
-      "downlinkCapacity": 100,
-      "congestion": false,
-      "readBufferSize": 4,
-      "writeBufferSize": 4
-    }
-  },
-  "policy": {
-    "levels": {
-      "0": {
-        "handshake": 2,
-        "connIdle": 150,
-        "uplinkOnly": 2,
-        "downlinkOnly": 5,
-        "bufferSize": 4
-      }
-    }
-  }
+  ]
 }
