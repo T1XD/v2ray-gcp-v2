@@ -21,13 +21,6 @@
         "security": "none",
         "wsSettings": {
           "path": "/yasssss-vless-30"
-        },
-        "sockopt": {
-          "tcpFastOpen": true,
-          "tcpNoDelay": true,
-          "tcpCongestion": "bbr",
-          "tcpKeepAliveInterval": 30,
-          "tcpKeepAliveIdle": 60
         }
       },
       "sniffing": {
@@ -42,21 +35,6 @@
       "tag": "direct",
       "settings": {
         "domainStrategy": "UseIPv4"
-      },
-      "streamSettings": {
-        "sockopt": {
-          "tcpFastOpen": true,
-          "tcpNoDelay": true,
-          "tcpCongestion": "bbr",
-          "tcpKeepAliveInterval": 30,
-          "tcpKeepAliveIdle": 60
-        }
-      },
-      "mux": {
-        "enabled": true,
-        "concurrency": 1024,
-        "xudpConcurrency": 1024,
-        "xudpProxyUDP443": "allow"
       }
     }
   ]
